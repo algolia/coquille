@@ -1,4 +1,4 @@
-# Coquille
+# 🐚 Coquille
 
 A React component that renders a terminal on the browser with some built-in features. The goal is to make this component reusable with different use cases.
 
