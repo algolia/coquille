@@ -1,0 +1,7 @@
+dist
+coverage
+.prettierignore
+yarn.lock
+*.snap
+.npmrc
+.gitignore
