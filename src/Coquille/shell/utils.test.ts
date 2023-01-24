@@ -1,6 +1,6 @@
 import { commandToWords, isWordFlagName, sanitizeFlag } from './utils';
 
-describe('commandToWords', function() {
+describe('commandToWords', () => {
   it.each([
     ['Root command', `command`, ['command']],
     [
@@ -28,7 +28,7 @@ describe('commandToWords', function() {
   });
 });
 
-describe('isWordFlagName', function() {
+describe('isWordFlagName', () => {
   it.each([
     // ✅ Valid flags
     ['Full flag', '--flag', true],
@@ -44,7 +44,7 @@ describe('isWordFlagName', function() {
   });
 });
 
-describe('sanitizeFlags', function() {
+describe('sanitizeFlags', () => {
   it.each([
     ['Full flag', '--flag', 'flag'],
     ['Shorthand flag', '-f', 'f'],

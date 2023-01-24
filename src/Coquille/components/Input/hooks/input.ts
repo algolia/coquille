@@ -11,21 +11,21 @@ import { Commands, Suggestion } from '../../../types';
 import { CommandOutputProps } from '../../CommandOutput';
 
 type Args = {
-  ref: ForwardedRef<HTMLInputElement>;
-  commands: Commands;
-  setInputValue: (value: string) => void;
-  suggestions: Suggestion[] | null;
-  selectedSuggestion: Suggestion | null;
-  setSuggestions: (value: SetStateAction<Suggestion[] | null>) => void;
   clearSuggestions: () => void;
-  navigateSuggestion: (direction: 'up' | 'down') => void;
+  commands: Commands;
   history: string[];
-  setHistory: Dispatch<SetStateAction<string[]>>;
-  setSelectedSuggestionIndex: Dispatch<SetStateAction<number | null>>;
   navigateHistory: (direction: 'up' | 'down') => void;
-  setSelectedHistoryIndex: (value: SetStateAction<number | null>) => void;
+  navigateSuggestion: (direction: 'up' | 'down') => void;
+  ref: ForwardedRef<HTMLInputElement>;
   scrollToBottom: () => void;
+  selectedSuggestion: Suggestion | null;
+  setHistory: Dispatch<SetStateAction<string[]>>;
+  setInputValue: (value: string) => void;
   setOutput: Dispatch<SetStateAction<CommandOutputProps[]>>;
+  setSelectedHistoryIndex: (value: SetStateAction<number | null>) => void;
+  setSelectedSuggestionIndex: Dispatch<SetStateAction<number | null>>;
+  setSuggestions: (value: SetStateAction<Suggestion[] | null>) => void;
+  suggestions: Suggestion[] | null;
 };
 
 const useInput = ({
@@ -51,7 +51,7 @@ const useInput = ({
     setSelectedHistoryIndex(null);
   };
 
-  const onInputChange: ChangeEventHandler<HTMLInputElement> = event => {
+  const onInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const { value } = event.target;
     event.preventDefault();
 
@@ -64,7 +64,9 @@ const useInput = ({
     }
   };
 
-  const onInputKeyDown: KeyboardEventHandler<HTMLInputElement> = async event => {
+  const onInputKeyDown: KeyboardEventHandler<HTMLInputElement> = async (
+    event
+  ) => {
     const { ctrlKey, metaKey, shiftKey, key } = event;
     const { value } = event.target as HTMLInputElement;
 
@@ -76,7 +78,7 @@ const useInput = ({
         // Autocomplete with selected suggestion
         if (selectedSuggestion !== null) {
           const { name: suggestionValue } = selectedSuggestion;
-          let commandWords = value.split(' ');
+          const commandWords = value.split(' ');
           const lastWord = commandWords[commandWords.length - 1];
 
           let autocompletedInput = '';
@@ -104,7 +106,7 @@ const useInput = ({
         }
 
         // Run command
-        setHistory(prevHistory => [...prevHistory, value]);
+        setHistory((prevHistory) => [...prevHistory, value]);
         const { error, parsedCommand, run } = commandParse(value, commands);
         let commandOutput: CommandOutputProps;
         if (error) {
@@ -112,23 +114,21 @@ const useInput = ({
             command: value,
             output: error,
           };
-        } else {
-          if (run && parsedCommand && ref.current) {
-            ref.current.disabled = true;
-            commandOutput = {
-              command: value,
-              output: await run(parsedCommand, {
-                input: ref,
-                inputValue: value,
-                setInputValue,
-                history,
-              }),
-            };
-            ref.current.disabled = false;
-            ref.current.focus();
-          }
+        } else if (run && parsedCommand && ref.current) {
+          ref.current.disabled = true;
+          commandOutput = {
+            command: value,
+            output: await run(parsedCommand, {
+              input: ref,
+              inputValue: value,
+              setInputValue,
+              history,
+            }),
+          };
+          ref.current.disabled = false;
+          ref.current.focus();
         }
-        setOutput(prevOutput => [...prevOutput, commandOutput]);
+        setOutput((prevOutput) => [...prevOutput, commandOutput]);
         clearInput();
         scrollToBottom();
         break;

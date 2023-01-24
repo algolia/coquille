@@ -216,4 +216,4 @@ DispatchKeyboardEventInTerminal = (args: {
 
 ## 🛟 Support
 
-Found a bug? [Open a new issue](https://github.com/algolia/cli-browser/issues/new) and help us to improve the code!
+Found a bug? [Open a new issue](https://github.com/algolia/coquille/issues/new) and help us to improve the code!

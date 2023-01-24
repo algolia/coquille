@@ -1,7 +1,7 @@
 import suggest from '.';
 import { commands } from '../mock';
 
-describe('suggest', function() {
+describe('suggest', () => {
   it.each([
     // ✅ With suggestion
     ['Root command suggestion', 'a', [{ name: 'algolia', description: '' }]],

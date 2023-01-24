@@ -15,12 +15,12 @@ const suggest: Suggest = (rawCommand, commands) => {
   ) {
     let suggestedCommand = Object.keys(commands);
     if (commandWords.length === 1 && lastCommandCharacter !== ' ') {
-      suggestedCommand = suggestedCommand.filter(commandName =>
+      suggestedCommand = suggestedCommand.filter((commandName) =>
         commandName.startsWith(firstWord)
       );
     }
     if (suggestedCommand.length > 0) {
-      return suggestedCommand.map(rootCommand => ({
+      return suggestedCommand.map((rootCommand) => ({
         name: rootCommand,
         description: commands[rootCommand].shortDesc || '',
       }));
@@ -81,10 +81,10 @@ const suggest: Suggest = (rawCommand, commands) => {
       if (commandCursor.flags) {
         return Object.keys(commandCursor.flags)
           .filter(
-            flag =>
+            (flag) =>
               !filledFlags.includes(flag) && flag.startsWith(flagNameInput)
           )
-          .map(flagName => ({
+          .map((flagName) => ({
             name: `--${flagName}`,
             alias: commandCursor.flags?.[flagName].shorthand
               ? `-${commandCursor.flags?.[flagName].shorthand}`

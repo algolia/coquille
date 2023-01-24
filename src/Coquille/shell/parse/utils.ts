@@ -1,5 +1,5 @@
-import  { ReactNode } from "react";
-import { Flag, FlagType } from "../../types";
+import { ReactNode } from 'react';
+import { Flag, FlagType } from '../../types';
 
 export const errorObject = (errMsg: ReactNode) => ({
   error: errMsg,
@@ -21,30 +21,30 @@ export const getFlagNameIfExists = (
       return flagObject;
     }
   }
-  return "";
+  return '';
 };
 
 export const getValueType = (
   value: string
-): "string" | "boolean" | "number" => {
-  if (["true", "false"].includes(value)) {
-    return "boolean";
+): 'string' | 'boolean' | 'number' => {
+  if (['true', 'false'].includes(value)) {
+    return 'boolean';
   }
   if (!isNaN(Number(value))) {
-    return "number";
+    return 'number';
   }
 
-  return "string";
+  return 'string';
 };
 
 export const castValueToType = (
   value: string,
-  type: "string" | "boolean" | "number"
+  type: 'string' | 'boolean' | 'number'
 ) => {
-  if (type === "boolean") {
-    return value === "true";
+  if (type === 'boolean') {
+    return value === 'true';
   }
-  if (type === "number") {
+  if (type === 'number') {
     return Number(value);
   }
   return value;
@@ -54,15 +54,15 @@ export const setTrueValue = (multiple?: boolean) =>
   multiple ? [true as const] : true;
 
 type GetFlagValue = (args: {
-  flagName: string;
   flag: Flag;
+  flagName: string;
   value: string;
 }) =>
   | [error: null, value: FlagType | FlagType[]]
   | [error: string, value: null];
 
 export const getFlagValue: GetFlagValue = ({ flagName, flag, value }) => {
-  const splittedValue = value.split(",");
+  const splittedValue = value.split(',');
   if (splittedValue.length > 1 && !flag.multiple) {
     return [`❌ No multiple values expected for flag '${flagName}'`, null];
   }

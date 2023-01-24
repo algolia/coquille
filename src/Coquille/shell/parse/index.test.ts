@@ -1,7 +1,7 @@
 import parseCommand from '.';
 import { commands } from '../mock';
 
-describe('parse', function() {
+describe('parse', () => {
   it.each([
     // ✅ Valid commands
     [

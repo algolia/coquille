@@ -4,8 +4,8 @@ import React, {
   Fragment,
   useImperativeHandle,
   useRef,
+  ForwardRefRenderFunction,
 } from 'react';
-import { ForwardRefRenderFunction } from 'react';
 import { Suggestion } from '../../types';
 
 export type SuggestionsHandle = {
@@ -14,8 +14,8 @@ export type SuggestionsHandle = {
 };
 
 interface SuggestionsProps {
-  suggestions: Suggestion[];
   selectedSuggestion: Suggestion | null;
+  suggestions: Suggestion[];
 }
 
 const Suggestions: ForwardRefRenderFunction<
