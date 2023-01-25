@@ -1,12 +1,14 @@
 # 🐚 Coquille
 
-A React component that renders a terminal on the browser with some built-in features. The goal is to make this component reusable with different use cases.
+Coquille is React component that renders a terminal on the browser with some built-in features.
+
+Algolia web CLI is built on top of Coquille! [See more here](https://github.com/algolia/cli-browser).
 
 ## ✨ Features
 
 - Suggestions (command, sub command, arguments, flags, flag values)
 - Command parsing (with usage of brackets `"` for values)
-- Terminal shortcuts (`CTRL+L` to clear, `CTRL+U` to erase line... [see full list below](#shortcuts))
+- Terminal shortcuts ([see full list below](#shortcuts))
 
 ## 📖 Documentation
 
@@ -26,8 +28,10 @@ A React component that renders a terminal on the browser with some built-in feat
 
 ### Integration
 
+#### Props interface
+
 ```typescript
-interface TerminalProps {
+interface CoquilleProps {
   commands: Commands; // commands object defined below
   promptPrefix?: ReactNode; // customizable prompt prefix
   runOnStart?: RunCommand; // command to run on component mount
