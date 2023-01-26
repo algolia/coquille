@@ -1,7 +1,7 @@
 {
-  "name": "coquille",
+  "name": "@algolia/coquille",
   "description": "A React component that renders a terminal on the browser",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Loïc Say",
   "license": "ISC",
   "keywords": [
