@@ -1,7 +1,7 @@
 {
   "name": "@algolia/coquille",
   "description": "A React component that renders a terminal on the browser",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "author": "Loïc Say",
   "license": "ISC",
   "keywords": [
@@ -12,12 +12,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/algolia/coquille.git"
   },
   "scripts": {
     "dev": "tsup --watch",
-    "build:tailwind": "yarn tailwindcss -i ./src/index.css -o ./dist/coquille.css --minify",
-    "build": "tsup && yarn build:tailwind",
+    "build": "tsup",
     "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"{src,tests}/**/*.+(ts|js|tsx)\"",
     "lint:fix": "yarn lint --fix && prettier --write .",
@@ -49,7 +48,8 @@
   "exports": {
     ".": {
       "require": "./dist/index.js",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "index.css": "./dist/index.css"
     }
   },
   "files": [
@@ -586,13 +586,13 @@
     "sprintf-js": "1.0.3",
     "stack-utils": "2.0.6",
     "statuses": "2.0.1",
-    "string_decoder": "1.3.0",
     "string-argv": "0.3.1",
     "string-length": "4.0.2",
     "string-width": "4.2.3",
     "string.prototype.matchall": "4.0.8",
     "string.prototype.trimend": "1.0.6",
     "string.prototype.trimstart": "1.0.6",
+    "string_decoder": "1.3.0",
     "strip-ansi": "6.0.1",
     "strip-bom": "3.0.0",
     "strip-final-newline": "2.0.0",
@@ -655,5 +655,9 @@
     "yargs": "17.6.2",
     "yargs-parser": "21.1.1",
     "yocto-queue": "0.1.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/algolia/coquille/issues"
+  },
+  "homepage": "https://github.com/algolia/coquille#readme"
 }

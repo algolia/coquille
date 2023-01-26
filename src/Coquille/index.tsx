@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import { FC, ReactNode, useEffect, useRef, useState } from 'react';
+import '../index.css';
 import CommandOutput, { Output } from './components/CommandOutput';
 import Input from './components/Input';
 import { Commands, RunCommand } from './types';
