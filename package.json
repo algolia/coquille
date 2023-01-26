@@ -48,9 +48,9 @@
   "exports": {
     ".": {
       "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "index.css": "./dist/index.css"
-    }
+      "import": "./dist/index.mjs"
+    },
+    "./index.css": "./dist/index.css"
   },
   "files": [
     "dist"
