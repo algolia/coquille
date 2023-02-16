@@ -1,5 +1,6 @@
 import cx from 'classnames';
 import {
+  forwardRef,
   ForwardRefRenderFunction,
   ReactNode,
   useEffect,
@@ -121,4 +122,4 @@ const Coquille: ForwardRefRenderFunction<CoquilleHandle, CoquilleProps> = (
   );
 };
 
-export default Coquille;
+export default forwardRef(Coquille);
