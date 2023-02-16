@@ -1,8 +1,16 @@
 import cx from 'classnames';
-import { FC, ReactNode, useEffect, useRef, useState } from 'react';
+import {
+  ForwardRefRenderFunction,
+  ReactNode,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import '../index.css';
 import CommandOutput, { Output } from './components/CommandOutput';
 import Input from './components/Input';
+import { runCommandInTerminal } from './helpers';
 import { Commands, RunCommand } from './types';
 
 interface CoquilleProps {
@@ -12,18 +20,17 @@ interface CoquilleProps {
   runOnStart?: RunCommand;
 }
 
-const Coquille: FC<CoquilleProps> = ({
-  className,
-  promptPrefix,
-  commands,
-  runOnStart,
-}) => {
+export type CoquilleHandle = {
+  runCommand: (command: string) => void;
+};
+
+const Coquille: ForwardRefRenderFunction<CoquilleHandle, CoquilleProps> = (
+  { className, promptPrefix, commands, runOnStart },
+  ref
+) => {
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  // I/O
-  const [output, setOutput] = useState<Output[]>([]);
 
   const setInputValue = (value: string) => {
     if (!inputRef.current) {
@@ -31,6 +38,15 @@ const Coquille: FC<CoquilleProps> = ({
     }
     inputRef.current.value = value;
   };
+
+  useImperativeHandle(ref, () => ({
+    runCommand: (command: string) => {
+      runCommandInTerminal({ command, input: inputRef, setInputValue });
+    },
+  }));
+
+  // I/O
+  const [output, setOutput] = useState<Output[]>([]);
 
   useEffect(() => {
     focusInput();
