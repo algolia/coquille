@@ -6,12 +6,14 @@ import Input from './components/Input';
 import { Commands, RunCommand } from './types';
 
 interface CoquilleProps {
+  className?: string;
   commands: Commands;
   promptPrefix?: ReactNode;
   runOnStart?: RunCommand;
 }
 
 const Coquille: FC<CoquilleProps> = ({
+  className,
   promptPrefix,
   commands,
   runOnStart,
@@ -77,8 +79,7 @@ const Coquille: FC<CoquilleProps> = ({
       onClick={focusInput}
       onFocus={focusInput}
       className={cx(
-        'rounded-lg p-4 w-full h-[500px] bg-[#0E2058]',
-        'text-white text-sm font-mono',
+        className,
         'overflow-scroll no-scrollbar no-scrollbar::-webkit-scrollbar'
       )}
     >
