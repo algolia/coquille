@@ -1,4 +1,5 @@
-import { Flag } from '../../types';
+import { describe, expect, it } from "vitest";
+import { Flag } from "../../types";
 import {
   castValueToType,
   errorObject,
@@ -6,240 +7,240 @@ import {
   getFlagValue,
   getValueType,
   setTrueValue,
-} from './utils';
+} from "./utils";
 
-describe('errorObject', () => {
+describe("errorObject", () => {
   it.each([
     [
-      'Error message',
-      '❌ No command found',
+      "Error message",
+      "❌ No command found",
       {
-        error: '❌ No command found',
+        error: "❌ No command found",
         parsedCommand: undefined,
         run: undefined,
       },
     ],
-  ])('%s', (_, word, expectedValue) => {
+  ])("%s", (_, word, expectedValue) => {
     const result = errorObject(word);
 
     expect(result).toStrictEqual(expectedValue);
   });
 });
 
-describe('getFlagNameIfExists', () => {
+describe("getFlagNameIfExists", () => {
   it.each([
     // ✅ Valid flag name/shorthand
     [
-      'Valid name',
-      'forward-to-replicas',
+      "Valid name",
+      "forward-to-replicas",
       {
         scope: {
-          shorthand: 's',
-          randomKey: 'randomValue',
+          shorthand: "s",
+          randomKey: "randomValue",
         },
-        'forward-to-replicas': {
-          shorthand: 'f',
+        "forward-to-replicas": {
+          shorthand: "f",
           randomObject: {
-            random: '',
+            random: "",
           },
         },
       },
-      'forward-to-replicas',
+      "forward-to-replicas",
     ],
     [
-      'Valid shorthand',
-      's',
+      "Valid shorthand",
+      "s",
       {
         scope: {
-          shorthand: 's',
-          randomKey: 'randomValue',
+          shorthand: "s",
+          randomKey: "randomValue",
         },
-        'forward-to-replicas': {
-          shorthand: 'f',
+        "forward-to-replicas": {
+          shorthand: "f",
           randomObject: {
-            random: '',
+            random: "",
           },
         },
       },
-      'scope',
+      "scope",
     ],
     // ❌ Wrong flag name/shorthand
     [
-      'Wrong name',
-      'random',
+      "Wrong name",
+      "random",
       {
         scope: {
-          shorthand: 's',
-          randomKey: 'randomValue',
+          shorthand: "s",
+          randomKey: "randomValue",
         },
       },
-      '',
+      "",
     ],
     [
-      'Wrong shorthand',
-      'z',
+      "Wrong shorthand",
+      "z",
       {
         scope: {
-          shorthand: 's',
-          randomKey: 'randomValue',
+          shorthand: "s",
+          randomKey: "randomValue",
         },
       },
-      '',
+      "",
     ],
-  ])('%s', (_, word, flags, expectedValue) => {
+  ])("%s", (_, word, flags, expectedValue) => {
     const result = getFlagNameIfExists(word, flags);
 
     expect(result).toStrictEqual(expectedValue);
   });
 });
 
-describe('getValueType', () => {
+describe("getValueType", () => {
   it.each([
-    ['String', 'test value', 'string'],
-    ['String with number', 'test-value-12', 'string'],
-    ['Number', '12', 'number'],
-    ['Float', '12.567', 'number'],
-    ['Boolean true', 'true', 'boolean'],
-    ['Boolean false', 'false', 'boolean'],
-  ])('%s', (_, value, expectedValue) => {
+    ["String", "test value", "string"],
+    ["String with number", "test-value-12", "string"],
+    ["Number", "12", "number"],
+    ["Float", "12.567", "number"],
+    ["Boolean true", "true", "boolean"],
+    ["Boolean false", "false", "boolean"],
+  ])("%s", (_, value, expectedValue) => {
     const result = getValueType(value);
 
     expect(result).toStrictEqual(expectedValue);
   });
 });
 
-describe('castValueToType', () => {
+describe("castValueToType", () => {
   it.each([
-    ['String', 'test value', 'string' as const, 'test value'],
-    ['Number', '12', 'number' as const, 12],
-    ['Boolean true', 'true', 'boolean' as const, true],
-    ['Boolean false', 'false', 'boolean' as const, false],
-    ['Number as string', '12', 'string' as const, '12'],
-    ['Boolean as string', 'true', 'string' as const, 'true'],
-    ['Boolean as string', 'true', 'string' as const, 'true'],
-    ['Boolean as number', 'true', 'number' as const, NaN],
-    ['String as number', 'test value', 'number' as const, NaN],
-    ['String as boolean', 'test value', 'boolean' as const, false],
-  ])('%s', (_, value, type, expectedValue) => {
+    ["String", "test value", "string" as const, "test value"],
+    ["Number", "12", "number" as const, 12],
+    ["Boolean true", "true", "boolean" as const, true],
+    ["Boolean false", "false", "boolean" as const, false],
+    ["Number as string", "12", "string" as const, "12"],
+    ["Boolean as string", "true", "string" as const, "true"],
+    ["Boolean as string", "true", "string" as const, "true"],
+    ["Boolean as number", "true", "number" as const, NaN],
+    ["String as number", "test value", "number" as const, NaN],
+    ["String as boolean", "test value", "boolean" as const, false],
+  ])("%s", (_, value, type, expectedValue) => {
     const result = castValueToType(value, type);
 
     expect(result).toStrictEqual(expectedValue);
   });
 });
 
-describe('setTrueValue', () => {
+describe("setTrueValue", () => {
   it.each([
-    ['Multiple', true, [true]],
-    ['Single', false, true],
-    ['Single undefined', undefined, true],
-  ])('%s', (_, multiple, expectedValue) => {
+    ["Multiple", true, [true]],
+    ["Single", false, true],
+    ["Single undefined", undefined, true],
+  ])("%s", (_, multiple, expectedValue) => {
     const result = setTrueValue(multiple);
 
     expect(result).toEqual(expectedValue);
   });
 });
 
-describe('getFlagValue', () => {
+describe("getFlagValue", () => {
   const multipleNumberFlag: Flag = {
-    shortDesc: 'Multiple number flag',
-    type: 'number',
+    shortDesc: "Multiple number flag",
+    type: "number",
     multiple: true,
   };
   const singleNumberFlag: Flag = {
-    shortDesc: 'Single number flag',
-    type: 'number',
+    shortDesc: "Single number flag",
+    type: "number",
   };
   const multipleStringFlag: Flag = {
-    shortDesc: 'Multiple string flag',
-    type: 'string',
+    shortDesc: "Multiple string flag",
+    type: "string",
     multiple: true,
   };
   const singleStringFlag: Flag = {
-    shortDesc: 'Single string flag',
-    type: 'string',
+    shortDesc: "Single string flag",
+    type: "string",
   };
   const multipleBooleanFlag: Flag = {
-    shortDesc: 'Multiple boolean flag',
-    type: 'boolean',
+    shortDesc: "Multiple boolean flag",
+    type: "boolean",
     multiple: true,
   };
   const singleBooleanFlag: Flag = {
-    shortDesc: 'Single boolean flag',
-    type: 'boolean',
+    shortDesc: "Single boolean flag",
+    type: "boolean",
   };
 
   it.each([
     // ✅ Correct value
     [
-      'Multiple number flag',
+      "Multiple number flag",
       {
         flag: multipleNumberFlag,
-        flagName: 'multiple-number-flag',
-        value: '12,13,14',
+        flagName: "multiple-number-flag",
+        value: "12,13,14",
       },
       [null, [12, 13, 14]],
     ],
     [
-      'Multiple number flag with one value',
+      "Multiple number flag with one value",
       {
         flag: multipleNumberFlag,
-        flagName: 'multiple-number-flag',
-        value: '12',
+        flagName: "multiple-number-flag",
+        value: "12",
       },
       [null, [12]],
     ],
     [
-      'Single number flag with one value',
+      "Single number flag with one value",
       {
         flag: singleNumberFlag,
-        flagName: 'single-number-flag',
-        value: '12',
+        flagName: "single-number-flag",
+        value: "12",
       },
       [null, 12],
     ],
     [
-      'Multiple string flag with one value',
+      "Multiple string flag with one value",
       {
         flag: multipleStringFlag,
-        flagName: 'multiple-string-flag',
-        value: 'one',
+        flagName: "multiple-string-flag",
+        value: "one",
       },
-      [null, ['one']],
+      [null, ["one"]],
     ],
     [
-      'Single string flag with one value',
+      "Single string flag with one value",
       {
         flag: singleStringFlag,
-        flagName: 'single-string-flag',
-        value: 'one',
+        flagName: "single-string-flag",
+        value: "one",
       },
-      [null, 'one'],
+      [null, "one"],
     ],
     [
-      'Multiple boolean flag with one value',
+      "Multiple boolean flag with one value",
       {
         flag: multipleBooleanFlag,
-        flagName: 'multiple-boolean-flag',
-        value: 'true',
+        flagName: "multiple-boolean-flag",
+        value: "true",
       },
       [null, [true]],
     ],
     [
-      'Single boolean flag with one value',
+      "Single boolean flag with one value",
       {
         flag: singleBooleanFlag,
-        flagName: 'single-boolean-flag',
-        value: 'true',
+        flagName: "single-boolean-flag",
+        value: "true",
       },
       [null, true],
     ],
     // ❌ Wrong value
     [
-      'Multiple number flag with strings',
+      "Multiple number flag with strings",
       {
         flag: multipleNumberFlag,
-        flagName: 'multiple-number-flag',
-        value: 'one,two,three',
+        flagName: "multiple-number-flag",
+        value: "one,two,three",
       },
       [
         "❌ Wrong value for 'multiple-number-flag' flag: number value expected",
@@ -247,36 +248,36 @@ describe('getFlagValue', () => {
       ],
     ],
     [
-      'Single number flag with multiple values',
+      "Single number flag with multiple values",
       {
         flag: singleNumberFlag,
-        flagName: 'single-number-flag',
-        value: '12,13,14',
+        flagName: "single-number-flag",
+        value: "12,13,14",
       },
       ["❌ No multiple values expected for flag 'single-number-flag'", null],
     ],
     [
-      'Single string flag with multiple values',
+      "Single string flag with multiple values",
       {
         flag: singleStringFlag,
-        flagName: 'single-string-flag',
-        value: 'one,two,three',
+        flagName: "single-string-flag",
+        value: "one,two,three",
       },
       ["❌ No multiple values expected for flag 'single-string-flag'", null],
     ],
     [
-      'Multiple boolean flag with multiple string values',
+      "Multiple boolean flag with multiple string values",
       {
         flag: multipleBooleanFlag,
-        flagName: 'multiple-boolean-flag',
-        value: 'one,two,three',
+        flagName: "multiple-boolean-flag",
+        value: "one,two,three",
       },
       [
         "❌ Wrong value for 'multiple-boolean-flag' flag: boolean value expected",
         null,
       ],
     ],
-  ])('%s', (_, args, expectedValue) => {
+  ])("%s", (_, args, expectedValue) => {
     const result = getFlagValue(args);
 
     expect(result).toStrictEqual(expectedValue);
