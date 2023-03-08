@@ -12,6 +12,12 @@ Algolia web CLI is built on top of Coquille! [See more here](https://github.com/
 
 ## 📖 Documentation
 
+### Guide
+
+Get started example to integrate Coquille to your codebase
+
+
+
 ### Usage
 
 #### Shortcuts

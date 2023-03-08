@@ -34,7 +34,7 @@ const Suggestions: ForwardRefRenderFunction<
     <dl
       ref={containerRef}
       className={cx(
-        'grid grid-cols-2-auto-1fr mt-1 -ml-1 max-h-50p relative',
+        'grid grid-cols-2-auto-1fr mt-1 -ml-1 max-h-50p relative pl-1',
         'overflow-scroll no-scrollbar no-scrollbar::-webkit-scrollbar'
       )}
     >
