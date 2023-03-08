@@ -1,6 +1,6 @@
 # 🐚 Coquille
 
-[<img src="https://icons.veryicon.com/png/o/photographic/ant-design-official-icon-library/codesandbox-square-f.png" width="50"/>](https://codesandbox.io/s/coquille-example-354c7c)
+[Run in CodeSandbox](https://codesandbox.io/s/coquille-example-354c7c)
 
 Coquille is React component that renders a terminal on the browser with some built-in features.
 
