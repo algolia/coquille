@@ -1,5 +1,7 @@
 # 🐚 Coquille
 
+[<img src="https://icons.veryicon.com/png/o/photographic/ant-design-official-icon-library/codesandbox-square-f.png" width="50"/>](https://codesandbox.io/s/coquille-example-354c7c)
+
 Coquille is React component that renders a terminal on the browser with some built-in features.
 
 Algolia web CLI is built on top of Coquille! [See more here](https://github.com/algolia/cli-browser).
@@ -15,8 +17,6 @@ Algolia web CLI is built on top of Coquille! [See more here](https://github.com/
 ### Guide
 
 Get started example to integrate Coquille to your codebase
-
-
 
 ### Usage
 
