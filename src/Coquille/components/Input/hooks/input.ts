@@ -106,7 +106,7 @@ const useInput = ({
         }
 
         // Run command
-        setHistory((prevHistory) => [...prevHistory, value]);
+        setHistory((prevHistory) => [...prevHistory, value.trim()]);
         const { error, parsedCommand, run } = commandParse(value, commands);
         let commandOutput: CommandOutputProps;
         if (error) {

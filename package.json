@@ -1,6 +1,14 @@
 {
   "name": "@algolia/coquille",
   "description": "A React component that renders a terminal on the browser",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algolia/coquille.git"
+  },
+  "bugs": {
+    "url": "https://github.com/algolia/coquille/issues"
+  },
+  "homepage": "https://github.com/algolia/coquille#readme",
   "version": "0.0.17",
   "author": "Loïc Say",
   "license": "ISC",
@@ -11,9 +19,11 @@
     "react"
   ],
   "scripts": {
+    "dev": "vite",
+    "test": "vitest",
     "build": "rm -rf dist && pnpm build:css && rollup -c",
     "build:css": "tailwind -o dist/index.css --minify",
-    "test": "vitest"
+    "build:dev": "vite build"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
@@ -21,10 +31,13 @@
     "@rollup/plugin-terser": "^0.4.0",
     "@rollup/plugin-typescript": "^11.0.0",
     "@types/react": "^18.0.28",
+    "@types/react-dom": "18.0.11",
+    "@vitejs/plugin-react": "3.1.0",
     "autoprefixer": "^10.4.13",
     "classnames": "^2.3.2",
     "postcss": "^8.4.21",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rollup": "^3.18.0",
     "rollup-plugin-dts": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
@@ -48,13 +61,5 @@
       "import": "./dist/esm/index.js"
     },
     "./index.css": "./dist/index.css"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/algolia/coquille.git"
-  },
-  "bugs": {
-    "url": "https://github.com/algolia/coquille/issues"
-  },
-  "homepage": "https://github.com/algolia/coquille#readme"
+  }
 }
