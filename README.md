@@ -1,50 +1,67 @@
-# 🐚 Coquille
-
-[Run in CodeSandbox](https://codesandbox.io/s/coquille-example-354c7c)
+<h1 align="center">🐚 Coquille</h1>
 
 Coquille is React component that renders a terminal on the browser with some built-in features.
 
 Algolia web CLI is built on top of Coquille! [See more here](https://github.com/algolia/cli-browser).
 
+- [Run in CodeSandbox](https://codesandbox.io/s/coquille-example-354c7c)
+- [See demo](https://coquille.netlify.app/)
+- [npm package](https://www.npmjs.com/package/@algolia/coquille)
+- [bundlephobia](https://bundlephobia.com/package/@algolia/coquille)
+
 ## ✨ Features
 
-- Suggestions (command, sub command, arguments, flags, flag values)
 - Command parsing (with usage of brackets `"` for values)
-- Terminal shortcuts ([see full list below](#shortcuts))
+- Suggestions for commands, sub commands, arguments, flag names, flag values (single or comma separated)
+- Terminal shortcuts
+  - `CTRL+L`: clear terminal
+  - `CTRL+U`: erase current line
+  - `CTRL+A`: place cursor to the beginning of the line
+- Automatic errors based on commands structure (wrong flag or argument) is run
+- Click on previous command to copy to clipboard
 
-## 📖 Documentation
+## 💻 Installation
 
-### Guide
+To add the library to your project, run
 
-Get started example to integrate Coquille to your codebase
-
-### Usage
-
-#### Shortcuts
-
-- `CTRL+L`: clear terminal
-- `CTRL+U`: erase current line
-- `CTRL+A`: place cursor to the beginning of the line
-
-#### Interactions
-
-- Real time suggestions for commands, sub commands, arguments, flag names, flag values (single or comma separated)
-- Click on previous command to copy it to clipboard
-- Reading commands configuration to display errors when a wrong command (wrong flag or argument) is run
-
-### Integration
-
-#### Props interface
-
-```typescript
-interface CoquilleProps {
-  commands: Commands; // commands object defined below
-  promptPrefix?: ReactNode; // customizable prompt prefix
-  runOnStart?: RunCommand; // command to run on component mount
-}
+```bash
+  pnpm/yarn add @algolia/coquille
 ```
 
-#### Example
+or
+
+```bash
+  npm install @algolia/coquille
+```
+
+## 😌 Quickstart
+
+```jsx
+import Coquille, { Commands } from '@algolia/coquille';
+
+const commands: Commands = {
+  ls: {
+    shortDesc: 'List mocked files and folders',
+    args: { nbArgs: 0 },
+    run: () => (
+      <ul>
+        {['readme.txt', 'index.js', 'coquille.ts'].map((fileName) => (
+          <li key={fileName}>{fileName}</li>
+        ))}
+      </ul>
+    ),
+  },
+};
+
+const MyTerminal = () => (
+  <Coquille
+    className="my-coquille-class"
+    promptPrefix={<span className="my-prefix-class">{'$ >'}</span>}
+    commands={commands}
+    runOnStart={runOnStart}
+  />
+);
+```
 
 To define a command with typed flags:
 
@@ -60,7 +77,7 @@ const run: RunCommand<Flags> = async ({ flags }) => {
     // ...
   }
 
-  return <p>...</p>;
+  return <ul>...</ul>;
 };
 
 const ls: Command<Flags> = {
@@ -77,6 +94,20 @@ const ls: Command<Flags> = {
 };
 
 export default ls as Command;
+```
+
+## 📖 Documentation
+
+### Guide
+
+#### Props interface
+
+```typescript
+interface CoquilleProps {
+  commands: Commands; // commands object defined below
+  promptPrefix?: ReactNode; // customizable prompt prefix
+  runOnStart?: RunCommand; // command to run on component mount
+}
 ```
 
 #### Commands definition
