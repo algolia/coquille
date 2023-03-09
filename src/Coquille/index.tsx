@@ -12,7 +12,7 @@ import CommandOutput, { Output } from './components/CommandOutput';
 import Input from './components/Input';
 import { runCommandInTerminal } from './helpers';
 import { Commands, RunCommand } from './types';
-import '../index.css';
+import './index.css';
 
 interface CoquilleProps {
   className?: string;
