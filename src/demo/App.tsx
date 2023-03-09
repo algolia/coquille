@@ -1,5 +1,5 @@
 import Coquille from '../Coquille';
-import commands from './commands';
+import commands, { runOnStart } from './commands';
 
 function App() {
   return (
@@ -8,9 +8,12 @@ function App() {
         <Coquille
           className="h-[500px]"
           promptPrefix={
-            <span className="font-mono font-bold text-blue-100 flex mr-2">{'$ >'}</span>
+            <span className="font-mono font-bold text-blue-100 flex mr-2">
+              {'$ >'}
+            </span>
           }
           commands={commands}
+          runOnStart={runOnStart}
         />
       </div>
     </section>
