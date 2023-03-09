@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 const plugin = require('tailwindcss/plugin');
 
+/**
+ * This tailwind config contains everything used in Coquille and in the demo
+ * When building the Coquille, src/Coquille/tailwind.config.cjs is used to remove every classes
+ * related to demo.
+ */
 module.exports = {
   content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
   theme: {

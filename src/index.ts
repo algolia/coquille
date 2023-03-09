@@ -1,6 +1,7 @@
-import Coquille, { CoquilleHandle } from "./Coquille";
+import type { CoquilleHandle } from './Coquille';
+import Coquille from './Coquille';
 
 export default Coquille;
+export * from './Coquille/helpers';
+export * from './Coquille/types';
 export { CoquilleHandle };
-export * from "./Coquille/types";
-export * from "./Coquille/helpers";
