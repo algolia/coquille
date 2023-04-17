@@ -15,6 +15,7 @@ export type Commands = {
 export type Suggestion = {
   alias?: string;
   description?: string;
+  playDown?: boolean;
   name: string;
 };
 
@@ -31,6 +32,7 @@ export type Command<F extends FlagValues = FlagValues> = {
   help?: HelpFunction; // Callback called to display command help
   run?: RunCommand<F>;
   shortDesc?: string; // Description of the command
+  playDown?: boolean; //Play down the commands when using suggestions
 };
 
 export type Flag = {
