@@ -65,6 +65,7 @@ const help: Command<Flags> = {
   },
   args: { nbArgs: 0 },
   run,
+  playDown: true,
 };
 
 export default help as Command;

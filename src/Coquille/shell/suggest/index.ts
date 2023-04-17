@@ -23,6 +23,7 @@ const suggest: Suggest = (rawCommand, commands) => {
       return suggestedCommand.map((rootCommand) => ({
         name: rootCommand,
         description: commands[rootCommand].shortDesc || '',
+        playDown: commands[rootCommand].playDown,
       }));
     }
   }
@@ -90,6 +91,7 @@ const suggest: Suggest = (rawCommand, commands) => {
               ? `-${commandCursor.flags?.[flagName].shorthand}`
               : '',
             description: commandCursor.flags?.[flagName].shortDesc || '',
+            playDown: commandCursor.playDown,
           }));
       }
 
@@ -100,7 +102,12 @@ const suggest: Suggest = (rawCommand, commands) => {
       const filteredSuggestions = commandCursor.args.suggestions.filter(
         ({ name }) => name.startsWith(lastWord) && !filledArgs.includes(name)
       );
-      return filteredSuggestions.length > 0 ? filteredSuggestions : null;
+      return filteredSuggestions.length > 0
+        ? filteredSuggestions.map((suggestion) => ({
+            ...suggestion,
+            playDown: commandCursor.playDown,
+          }))
+        : null;
     }
   } else {
     // Suggest flag values
@@ -115,7 +122,12 @@ const suggest: Suggest = (rawCommand, commands) => {
       const filteredSuggestions = commandCursor.args.suggestions.filter(
         ({ name }) => !filledArgs.includes(name)
       );
-      return filteredSuggestions.length > 0 ? filteredSuggestions : null;
+      return filteredSuggestions.length > 0
+        ? filteredSuggestions.map((suggestion) => ({
+            ...suggestion,
+            playDown: commandCursor.playDown,
+          }))
+        : null;
     }
 
     // Suggest subcommand, flags, args
@@ -127,6 +139,7 @@ const suggest: Suggest = (rawCommand, commands) => {
           {
             name: subcommand,
             description: commandCursor._?.[subcommand].shortDesc || '',
+            playDown: commandCursor._[subcommand].playDown,
           },
         ];
       }
@@ -142,6 +155,7 @@ const suggest: Suggest = (rawCommand, commands) => {
                 ? `-${commandCursor.flags?.[flagName].shorthand}`
                 : '',
               description: commandCursor.flags?.[flagName].shortDesc || '',
+              playDown: commandCursor.playDown,
             },
           ];
         }
@@ -182,7 +196,10 @@ const suggest: Suggest = (rawCommand, commands) => {
       return null;
     }
 
-    return filteredFlagSuggestions;
+    return filteredFlagSuggestions.map((suggestion) => ({
+      ...suggestion,
+      playDown: commandCursor.playDown,
+    }));
   }
 
   if (commandCursor._) {
@@ -195,6 +212,7 @@ const suggest: Suggest = (rawCommand, commands) => {
           {
             name: subcommand,
             description: commandCursor._?.[subcommand].shortDesc || '',
+            playDown: commandCursor._?.[subcommand].playDown,
           },
         ];
       }

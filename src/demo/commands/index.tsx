@@ -9,9 +9,9 @@ import history from './history';
 import ls from './ls';
 
 const commands: Commands = {
-  help,
   history,
   ls,
+  help,
 };
 
 export default commands;
