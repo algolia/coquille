@@ -47,9 +47,9 @@ const Suggestions: ForwardRefRenderFunction<
 
         const suggestionClassName = cx({
           'bg-gray-200 text-gray-700': isSuggestionSelected,
-          'bg-opacity-70': isSuggestionSelected && playDown,
+          'bg-opacity-50': isSuggestionSelected && playDown,
           'text-gray-300': !isSuggestionSelected,
-          'text-opacity-50': playDown && !isSuggestionSelected,
+          'text-opacity-40': playDown && !isSuggestionSelected,
         });
 
         return (
