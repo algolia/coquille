@@ -107,6 +107,7 @@ interface CoquilleProps {
   commands: Commands; // commands object defined below
   promptPrefix?: ReactNode; // customizable prompt prefix
   runOnStart?: RunCommand; // command to run on component mount
+  onCommandRun?: (rawCommand: string, parsedCommand?: ParsedCommand) => void; // callback run when a command is run (even if the command fails)
 }
 ```
 
