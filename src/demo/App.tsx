@@ -14,6 +14,9 @@ function App() {
           }
           commands={commands}
           runOnStart={runOnStart}
+          onCommandRun={(fullCommand, parsedOne) => {
+            console.log('onCommandRun', { fullCommand, parsedOne });
+          }}
         />
       </div>
     </section>

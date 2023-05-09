@@ -1,17 +1,17 @@
-import React, {
+import {
+  Dispatch,
   ForwardRefRenderFunction,
   InputHTMLAttributes,
   ReactNode,
   SetStateAction,
-  Dispatch,
   forwardRef,
 } from 'react';
-import { Commands } from '../../types';
+import { Commands, ParsedCommand } from '../../types';
 import { CommandOutputProps } from '../CommandOutput';
+import Suggestions from './Suggestions';
 import useHistory from './hooks/history';
 import useInput from './hooks/input';
 import useSuggestions from './hooks/suggestions';
-import Suggestions from './Suggestions';
 
 interface InputProps
   extends Omit<
@@ -19,10 +19,11 @@ interface InputProps
     'onChange' | 'onKeyDown'
   > {
   commands: Commands;
-  promptPrefix?: ReactNode;
   scrollToBottom: () => void;
   setInputValue: (value: string) => void;
   setOutput: Dispatch<SetStateAction<CommandOutputProps[]>>;
+  promptPrefix?: ReactNode;
+  onCommandRun?: (rawCommand: string, parsedCommand?: ParsedCommand) => void;
 }
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
@@ -32,6 +33,7 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     setInputValue,
     setOutput,
     scrollToBottom,
+    onCommandRun,
     ...inputProps
   },
   ref
@@ -66,6 +68,7 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     setSelectedHistoryIndex,
     scrollToBottom,
     setOutput,
+    onCommandRun,
   });
 
   return (

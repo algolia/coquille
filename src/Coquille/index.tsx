@@ -11,14 +11,15 @@ import {
 import CommandOutput, { Output } from './components/CommandOutput';
 import Input from './components/Input';
 import { runCommandInTerminal } from './helpers';
-import { Commands, RunCommand } from './types';
 import './index.css';
+import { Commands, ParsedCommand, RunCommand } from './types';
 
 interface CoquilleProps {
   className?: string;
   commands: Commands;
   promptPrefix?: ReactNode;
   runOnStart?: RunCommand;
+  onCommandRun?: (rawCommand: string, parsedCommand?: ParsedCommand) => void;
 }
 
 export type CoquilleHandle = {
@@ -26,7 +27,7 @@ export type CoquilleHandle = {
 };
 
 const Coquille: ForwardRefRenderFunction<CoquilleHandle, CoquilleProps> = (
-  { className, promptPrefix, commands, runOnStart },
+  { className, promptPrefix, commands, runOnStart, onCommandRun },
   ref
 ) => {
   // Refs
@@ -117,6 +118,7 @@ const Coquille: ForwardRefRenderFunction<CoquilleHandle, CoquilleProps> = (
         setOutput={setOutput}
         scrollToBottom={scrollToBottom}
         promptPrefix={promptPrefix}
+        onCommandRun={onCommandRun}
       />
     </div>
   );

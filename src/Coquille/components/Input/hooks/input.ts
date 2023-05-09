@@ -7,7 +7,7 @@ import {
 } from 'react';
 import commandParse from '../../../shell/parse';
 import suggest from '../../../shell/suggest';
-import { Commands, Suggestion } from '../../../types';
+import { Commands, ParsedCommand, Suggestion } from '../../../types';
 import { CommandOutputProps } from '../../CommandOutput';
 
 type Args = {
@@ -26,6 +26,7 @@ type Args = {
   setSelectedSuggestionIndex: Dispatch<SetStateAction<number | null>>;
   setSuggestions: (value: SetStateAction<Suggestion[] | null>) => void;
   suggestions: Suggestion[] | null;
+  onCommandRun?: (rawCommand: string, parsedCommand?: ParsedCommand) => void;
 };
 
 const useInput = ({
@@ -44,6 +45,7 @@ const useInput = ({
   setSelectedHistoryIndex,
   scrollToBottom,
   setOutput,
+  onCommandRun,
 }: Args) => {
   const clearInput = () => {
     setInputValue('');
@@ -131,6 +133,9 @@ const useInput = ({
         setOutput((prevOutput) => [...prevOutput, commandOutput]);
         clearInput();
         scrollToBottom();
+        if (onCommandRun) {
+          onCommandRun(value, parsedCommand);
+        }
         break;
       case 'Tab':
         event.preventDefault();
