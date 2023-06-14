@@ -23,7 +23,9 @@ const suggest: Suggest = (rawCommand, commands) => {
       return suggestedCommand.map((rootCommand) => ({
         name: rootCommand,
         description: commands[rootCommand].shortDesc || '',
-        playDown: commands[rootCommand].playDown,
+        ...(typeof commands[rootCommand].playDown === 'undefined'
+          ? {}
+          : { playDown: commands[rootCommand].playDown }),
       }));
     }
   }
@@ -91,7 +93,9 @@ const suggest: Suggest = (rawCommand, commands) => {
               ? `-${commandCursor.flags?.[flagName].shorthand}`
               : '',
             description: commandCursor.flags?.[flagName].shortDesc || '',
-            playDown: commandCursor.playDown,
+            ...(typeof commandCursor.playDown === 'undefined'
+              ? {}
+              : { playDown: commandCursor.playDown }),
           }));
       }
 
@@ -105,7 +109,9 @@ const suggest: Suggest = (rawCommand, commands) => {
       return filteredSuggestions.length > 0
         ? filteredSuggestions.map((suggestion) => ({
             ...suggestion,
-            playDown: commandCursor.playDown,
+            ...(typeof commandCursor.playDown === 'undefined'
+              ? {}
+              : { playDown: commandCursor.playDown }),
           }))
         : null;
     }
@@ -125,7 +131,9 @@ const suggest: Suggest = (rawCommand, commands) => {
       return filteredSuggestions.length > 0
         ? filteredSuggestions.map((suggestion) => ({
             ...suggestion,
-            playDown: commandCursor.playDown,
+            ...(typeof commandCursor.playDown === 'undefined'
+              ? {}
+              : { playDown: commandCursor.playDown }),
           }))
         : null;
     }
@@ -139,7 +147,9 @@ const suggest: Suggest = (rawCommand, commands) => {
           {
             name: subcommand,
             description: commandCursor._?.[subcommand].shortDesc || '',
-            playDown: commandCursor._[subcommand].playDown,
+            ...(typeof commandCursor._[subcommand].playDown === 'undefined'
+              ? {}
+              : { playDown: commandCursor._[subcommand].playDown }),
           },
         ];
       }
@@ -155,7 +165,9 @@ const suggest: Suggest = (rawCommand, commands) => {
                 ? `-${commandCursor.flags?.[flagName].shorthand}`
                 : '',
               description: commandCursor.flags?.[flagName].shortDesc || '',
-              playDown: commandCursor.playDown,
+              ...(typeof commandCursor.playDown === 'undefined'
+                ? {}
+                : { playDown: commandCursor.playDown }),
             },
           ];
         }
@@ -198,7 +210,9 @@ const suggest: Suggest = (rawCommand, commands) => {
 
     return filteredFlagSuggestions.map((suggestion) => ({
       ...suggestion,
-      playDown: commandCursor.playDown,
+      ...(typeof commandCursor.playDown === 'undefined'
+        ? {}
+        : { playDown: commandCursor.playDown }),
     }));
   }
 
@@ -212,7 +226,9 @@ const suggest: Suggest = (rawCommand, commands) => {
           {
             name: subcommand,
             description: commandCursor._?.[subcommand].shortDesc || '',
-            playDown: commandCursor._?.[subcommand].playDown,
+            ...(typeof commandCursor._?.[subcommand].playDown === 'undefined'
+              ? {}
+              : { playDown: commandCursor._?.[subcommand].playDown }),
           },
         ];
       }

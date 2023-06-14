@@ -11,7 +11,7 @@ Algolia web CLI is built on top of Coquille! [See more here](https://github.com/
 
 ## ✨ Features
 
-- Command parsing (with usage of brackets `"` for values)
+- Command parsing (with usage of double quotes `"` and single quotes `'` for values)
 - Suggestions for commands, sub commands, arguments, flag names, flag values (single or comma separated)
 - Terminal shortcuts
   - `CTRL+L`: clear terminal

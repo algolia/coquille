@@ -1,24 +1,36 @@
 export const commandToWords = (command: string) => {
   let commandWords: string[] = [];
   let currentWord: string = '';
-  let isParsingQuotationWord = false;
+  let isParsingDoubleQuotationWord = false;
+  let isParsingSingleQuotationWord = false;
 
   for (let i = 0; i <= command.length - 1; i++) {
     const char = command[i];
     const isLastChar = i === command.length - 1;
 
-    if (char === `"`) {
-      // End of word with quotation mark
-      if (isParsingQuotationWord) {
+    if (char === `"` && !isParsingSingleQuotationWord) {
+      // End of word with double quotation mark
+      if (isParsingDoubleQuotationWord) {
         commandWords = [...commandWords, currentWord];
         currentWord = '';
-        isParsingQuotationWord = false;
+        isParsingDoubleQuotationWord = false;
         continue;
       }
-      isParsingQuotationWord = true;
+      isParsingDoubleQuotationWord = true;
       continue;
     }
-    if (isParsingQuotationWord) {
+    if (char === `'` && !isParsingDoubleQuotationWord) {
+      // End of word single quotation mark
+      if (isParsingSingleQuotationWord) {
+        commandWords = [...commandWords, currentWord];
+        currentWord = '';
+        isParsingSingleQuotationWord = false;
+        continue;
+      }
+      isParsingSingleQuotationWord = true;
+      continue;
+    }
+    if (isParsingSingleQuotationWord || isParsingDoubleQuotationWord) {
       currentWord += char;
       continue;
     }

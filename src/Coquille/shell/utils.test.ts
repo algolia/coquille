@@ -10,7 +10,7 @@ describe("commandToWords", () => {
       ["command", "sub", "command", "--flag", "value"],
     ],
     [
-      "Sub command, flag with value in quotation mark",
+      "Sub command, flag with value in double quotation mark",
       `command sub command --flag "a value" --second-flag value`,
       [
         "command",
@@ -18,6 +18,32 @@ describe("commandToWords", () => {
         "command",
         "--flag",
         "a value",
+        "--second-flag",
+        "value",
+      ],
+    ],
+    [
+      "Sub command, flag with value in single quotation mark",
+      `command sub command --flag 'a value' --second-flag value`,
+      [
+        "command",
+        "sub",
+        "command",
+        "--flag",
+        "a value",
+        "--second-flag",
+        "value",
+      ],
+    ],
+    [
+      "Sub command, flag with value in single quotation mark",
+      `command sub command --flag 'filter="value in double quotation"' --second-flag value`,
+      [
+        "command",
+        "sub",
+        "command",
+        "--flag",
+        `filter="value in double quotation"`,
         "--second-flag",
         "value",
       ],
