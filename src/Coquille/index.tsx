@@ -51,7 +51,7 @@ const Coquille: ForwardRefRenderFunction<CoquilleHandle, CoquilleProps> = (
   const [output, setOutput] = useState<Output[]>([]);
 
   useEffect(() => {
-    scrollToBottom;
+    scrollToBottom();
   }, [output]);
 
   useEffect(() => {
