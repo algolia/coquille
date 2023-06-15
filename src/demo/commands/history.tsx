@@ -7,12 +7,12 @@ const run: RunCommand = (_, { history }) => {
   }
 
   return (
-    <dl className="grid grid-cols-auto-full mt-1 -ml-1">
+    <dl className="cq-grid cq-grid-cols-auto-full cq-mt-1 -cq-ml-1">
       {history.map((command, index) => (
         <Fragment key={`${command}-${index}`}>
-          <dt className="pl-1 pr-6 font-bold">{index}</dt>
+          <dt className="cq-pl-1 cq-pr-6 cq-font-bold">{index}</dt>
           <dd
-            className="w-fit hover:underline cursor-pointer"
+            className="cq-w-fit hover:cq-underline cq-cursor-pointer"
             onClick={() => navigator.clipboard.writeText(command)}
           >
             {command}

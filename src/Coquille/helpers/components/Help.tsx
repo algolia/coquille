@@ -22,19 +22,19 @@ export const Help: FC<HelpProps> = ({
     {/* Usage */}
     {usage ? (
       <>
-        <h4 className="font-bold mt-2">Usage</h4>
-        <p className="pl-4">{usage}</p>
+        <h4 className="cq-font-bold cq-mt-2">Usage</h4>
+        <p className="cq-pl-4">{usage}</p>
       </>
     ) : null}
     {/* Commands */}
     {subcommands ? (
       <>
-        <h4 className="font-bold mt-2">Commands</h4>
-        <dl className="grid grid-cols-auto-full pl-4">
+        <h4 className="cq-font-bold cq-mt-2">Commands</h4>
+        <dl className="cq-grid cq-grid-cols-auto-full cq-pl-4">
           {Object.keys(subcommands).map((commandName) => (
             <Fragment key={commandName}>
-              <dt className="pr-6">{`${commandName}:`}</dt>
-              <dd className="w-fit">{subcommands[commandName].shortDesc}</dd>
+              <dt className="cq-pr-6">{`${commandName}:`}</dt>
+              <dd className="cq-w-fit">{subcommands[commandName].shortDesc}</dd>
             </Fragment>
           ))}
         </dl>
@@ -43,17 +43,17 @@ export const Help: FC<HelpProps> = ({
     {/* Flags */}
     {flags ? (
       <>
-        <h4 className="font-bold mt-2">Flags</h4>
-        <dl className="grid grid-cols-auto-auto-full pl-4">
+        <h4 className="cq-font-bold cq-mt-2">Flags</h4>
+        <dl className="cq-grid cq-grid-cols-auto-auto-full cq-pl-4">
           {Object.keys(flags).map((flagName) => (
             <Fragment key={flagName}>
-              <dt className="pr-2">
+              <dt className="cq-pr-2">
                 {flags[flagName].shorthand
                   ? `-${flags[flagName].shorthand},`
                   : null}
               </dt>
-              <dt className="pr-6">{`--${flagName}`}</dt>
-              <dd className="w-fit">{flags[flagName].shortDesc}</dd>
+              <dt className="cq-pr-6">{`--${flagName}`}</dt>
+              <dd className="cq-w-fit">{flags[flagName].shortDesc}</dd>
             </Fragment>
           ))}
         </dl>
@@ -62,8 +62,8 @@ export const Help: FC<HelpProps> = ({
     {/* Examples */}
     {examples ? (
       <>
-        <h4 className="font-bold mt-2">Examples</h4>
-        <ul className="pl-4">
+        <h4 className="cq-font-bold cq-mt-2">Examples</h4>
+        <ul className="cq-pl-4">
           {examples.map((exampleItem) => (
             <li key={exampleItem}>{exampleItem}</li>
           ))}
@@ -73,8 +73,8 @@ export const Help: FC<HelpProps> = ({
     {/* Learn More */}
     {learnMore ? (
       <>
-        <h4 className="font-bold mt-2">Learn More</h4>
-        <div className="pl-4">{learnMore}</div>
+        <h4 className="cq-font-bold cq-mt-2">Learn More</h4>
+        <div className="cq-pl-4">{learnMore}</div>
       </>
     ) : null}
   </>

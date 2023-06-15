@@ -35,7 +35,7 @@ export const runOnStart: RunCommand = (_, shell) => {
     });
 
   return (
-    <p className="border-white border-[1px] rounded-md p-5">
+    <p className="cq-border-white cq-border-[1px] cq-rounded-md cq-p-5">
       Command run on start!
       <br />
       <br />- To list available commands, type{' '}

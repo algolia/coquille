@@ -7,6 +7,7 @@ const plugin = require('tailwindcss/plugin');
  * related to demo.
  */
 module.exports = {
+  prefix: 'cq-',
   content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
   theme: {
     fontFamily: {

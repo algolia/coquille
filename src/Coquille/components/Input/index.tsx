@@ -74,12 +74,12 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   return (
     <>
       {/* Input field */}
-      <pre className="flex">
+      <pre className="cq-flex">
         {promptPrefix ? <span>{promptPrefix}</span> : null}
         <input
           ref={ref}
           type="text"
-          className="w-full bg-transparent border-none outline-none flex-grow"
+          className="cq-w-full cq-bg-transparent cq-border-none cq-outline-none cq-flex-grow"
           onChange={onInputChange}
           onKeyDown={onInputKeyDown}
           spellCheck={false}

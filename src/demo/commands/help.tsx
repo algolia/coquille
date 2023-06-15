@@ -15,18 +15,18 @@ interface Flags extends FlagValues {
 
 const run: RunCommand<Flags> = async (command, shell) => {
   if (command.flags?.init) {
-    return <div className="mt-5">{await runOnStart(command, shell)}</div>;
+    return <div className="cq-mt-5">{await runOnStart(command, shell)}</div>;
   }
 
   return (
     <>
       <p>List of available commands:</p>
-      <dl className="grid grid-cols-auto-full mt-1 -ml-1">
+      <dl className="cq-grid cq-grid-cols-auto-full cq-mt-1 -cq-ml-1">
         {availableCommands.map(([commandName, commandDescription]) => (
           <Fragment key={commandName}>
             <dd
               className={cx(
-                'w-full min-w-max pl-1 rounded-l-sm pr-6 font-bold'
+                'cq-w-full cq-min-w-max cq-pl-1 cq-rounded-l-sm cq-pr-6 cq-font-bold'
               )}
               onClick={() => {
                 switch (commandName) {
@@ -44,7 +44,7 @@ const run: RunCommand<Flags> = async (command, shell) => {
             >
               {commandName}
             </dd>
-            <dt key={commandName} className="w-fit pr-1 rounded-r-sm">
+            <dt key={commandName} className="cq-w-fit cq-pr-1 cq-rounded-r-sm">
               {`-> ${commandDescription}`}
             </dt>
           </Fragment>

@@ -27,10 +27,10 @@ const CommandOutput: FC<CommandOutputProps> = ({
   return (
     <pre className={className}>
       {command ? (
-        <code className="flex mb-1">
+        <code className="cq-flex cq-mb-1">
           {promptPrefix}
           <span
-            className="font-mono flex hover:underline cursor-pointer"
+            className="cq-font-mono cq-flex hover:cq-underline cq-cursor-pointer"
             onClick={copyCommandToClipboard}
             title={`Copy ${command} to clipboard`}
           >

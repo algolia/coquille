@@ -3,12 +3,12 @@ import commands, { runOnStart } from './commands';
 
 function App() {
   return (
-    <section className="h-[100vh] flex items-center justify-center -mt-24">
-      <div className="w-3/4 max-w-4xl drop-shadow-lg rounded-lg p-4 bg-[#0E2058] text-white text-sm font-mono">
+    <section className="cq-h-[100vh] cq-flex cq-items-center cq-justify-center -cq-mt-24">
+      <div className="cq-w-3/4 cq-max-w-4xl cq-drop-shadow-lg cq-rounded-lg cq-p-4 cq-bg-[#0E2058] cq-text-white cq-text-sm cq-font-mono">
         <Coquille
-          className="h-[500px]"
+          className="cq-h-[500px]"
           promptPrefix={
-            <span className="font-mono font-bold text-blue-100 flex mr-2">
+            <span className="cq-font-mono cq-font-bold cq-text-blue-100 cq-flex cq-mr-2">
               {'$ >'}
             </span>
           }

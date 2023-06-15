@@ -98,7 +98,7 @@ const Coquille: ForwardRefRenderFunction<CoquilleHandle, CoquilleProps> = (
       onFocus={focusInput}
       className={cx(
         className,
-        'overflow-scroll no-scrollbar no-scrollbar::-webkit-scrollbar'
+        'cq-overflow-scroll cq-no-scrollbar cq-no-scrollbar::-webkit-scrollbar'
       )}
     >
       {/* Output history */}
@@ -106,7 +106,7 @@ const Coquille: ForwardRefRenderFunction<CoquilleHandle, CoquilleProps> = (
         <CommandOutput
           key={`${commandOutput.command}-${index}`}
           promptPrefix={promptPrefix}
-          className="mb-4 overflow-auto"
+          className="cq-mb-4 overflow-auto"
           {...commandOutput}
         />
       ))}
