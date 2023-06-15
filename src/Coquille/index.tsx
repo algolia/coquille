@@ -51,6 +51,10 @@ const Coquille: ForwardRefRenderFunction<CoquilleHandle, CoquilleProps> = (
   const [output, setOutput] = useState<Output[]>([]);
 
   useEffect(() => {
+    scrollToBottom;
+  }, [output]);
+
+  useEffect(() => {
     focusInput();
     if (runOnStart) {
       const initRun = async () => {
@@ -81,14 +85,12 @@ const Coquille: ForwardRefRenderFunction<CoquilleHandle, CoquilleProps> = (
   };
 
   const scrollToBottom = () => {
-    setTimeout(() => {
-      if (containerRef.current) {
-        containerRef.current.scrollBy({
-          top: containerRef.current.scrollHeight,
-          behavior: 'smooth',
-        });
-      }
-    }, 0);
+    if (containerRef.current) {
+      containerRef.current.scrollBy({
+        top: containerRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
   };
 
   return (

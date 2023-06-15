@@ -132,7 +132,6 @@ const useInput = ({
         }
         setOutput((prevOutput) => [...prevOutput, commandOutput]);
         clearInput();
-        scrollToBottom();
         if (onCommandRun) {
           onCommandRun(value, parsedCommand);
         }
