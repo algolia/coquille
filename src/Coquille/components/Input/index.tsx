@@ -5,6 +5,7 @@ import {
   ReactNode,
   SetStateAction,
   forwardRef,
+  useEffect,
 } from 'react';
 import { Commands, ParsedCommand } from '../../types';
 import { CommandOutputProps } from '../CommandOutput';
@@ -70,6 +71,10 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     setOutput,
     onCommandRun,
   });
+
+  // useEffect(() => {
+  //   scrollToBottom();
+  // }, [suggestions]);
 
   return (
     <>
