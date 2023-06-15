@@ -72,9 +72,9 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     onCommandRun,
   });
 
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, [suggestions]);
+  useEffect(() => {
+    scrollToBottom();
+  }, [suggestions]);
 
   return (
     <>
