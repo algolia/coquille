@@ -51,6 +51,11 @@ export const commands: Commands = {
                   ],
                 },
                 flags: {
+                  confirm: {
+                    type: 'boolean',
+                    shortDesc: 'skip confirmation prompt.',
+                    shorthand: 'y',
+                  },
                   scope: {
                     type: 'string',
                     shortDesc: 'scope flag description',

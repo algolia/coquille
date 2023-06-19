@@ -110,6 +110,7 @@ const parse: Parse = (rawCommand, commands) => {
         }
         isParsingArgs = false;
         isParsingFlags = true;
+
         const rawFlagName = sanitizeFlag(currentWord);
         const flagName = getFlagNameIfExists(rawFlagName, commandCursor.flags);
         if (!flagName) {
@@ -118,8 +119,20 @@ const parse: Parse = (rawCommand, commands) => {
           );
         }
 
-        currentFlagName = flagName;
-        continue;
+        if (!isCurrentWordLast) {
+          currentFlagName = flagName;
+          continue;
+        }
+
+        if (commandCursor.flags[flagName].type === 'boolean') {
+          flags = {
+            ...flags,
+            [flagName]: setTrueValue(commandCursor.flags[flagName].multiple),
+          };
+          continue;
+        } else {
+          return errorObject(`❌ Incorrect value for "${rawFlagName}"`);
+        }
       }
       // Is an arg
       if (
