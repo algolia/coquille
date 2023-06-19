@@ -15,8 +15,10 @@ import './index.css';
 import { Commands, ParsedCommand, RunCommand } from './types';
 
 interface CoquilleProps {
-  className?: string;
   commands: Commands;
+  id?: string;
+  className?: string;
+  persistHistory?: boolean;
   promptPrefix?: ReactNode;
   runOnStart?: RunCommand;
   onCommandRun?: (rawCommand: string, parsedCommand?: ParsedCommand) => void;
@@ -27,7 +29,15 @@ export type CoquilleHandle = {
 };
 
 const Coquille: ForwardRefRenderFunction<CoquilleHandle, CoquilleProps> = (
-  { className, promptPrefix, commands, runOnStart, onCommandRun },
+  {
+    commands,
+    id,
+    className,
+    persistHistory = true,
+    promptPrefix,
+    runOnStart,
+    onCommandRun,
+  },
   ref
 ) => {
   // Refs
@@ -115,6 +125,8 @@ const Coquille: ForwardRefRenderFunction<CoquilleHandle, CoquilleProps> = (
       {/* Input with suggestions */}
       <Input
         ref={inputRef}
+        id={id}
+        persistHistory={persistHistory}
         commands={commands}
         setInputValue={setInputValue}
         setOutput={setOutput}

@@ -9,6 +9,7 @@ import commandParse from '../../../shell/parse';
 import suggest from '../../../shell/suggest';
 import { Commands, ParsedCommand, Suggestion } from '../../../types';
 import { CommandOutputProps } from '../../CommandOutput';
+import { getHistoryLocalStorageKey } from './history';
 
 type Args = {
   clearSuggestions: () => void;
@@ -27,6 +28,8 @@ type Args = {
   setSuggestions: (value: SetStateAction<Suggestion[] | null>) => void;
   suggestions: Suggestion[] | null;
   onCommandRun?: (rawCommand: string, parsedCommand?: ParsedCommand) => void;
+  id?: string;
+  persistHistory?: boolean;
 };
 
 const useInput = ({
@@ -46,6 +49,8 @@ const useInput = ({
   scrollToBottom,
   setOutput,
   onCommandRun,
+  id,
+  persistHistory,
 }: Args) => {
   const clearInput = () => {
     setInputValue('');
@@ -108,7 +113,18 @@ const useInput = ({
         }
 
         // Run command
-        setHistory((prevHistory) => [...prevHistory, value.trim()]);
+        setHistory((prevHistory) => {
+          const newHistory = [...prevHistory, value.trim()];
+          if (persistHistory) {
+            localStorage.setItem(
+              getHistoryLocalStorageKey(id),
+              JSON.stringify(newHistory)
+            );
+          }
+
+          return newHistory;
+        });
+
         const { error, parsedCommand, run } = commandParse(value, commands);
         let commandOutput: CommandOutputProps;
         if (error) {

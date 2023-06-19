@@ -23,6 +23,8 @@ interface InputProps
   scrollToBottom: () => void;
   setInputValue: (value: string) => void;
   setOutput: Dispatch<SetStateAction<CommandOutputProps[]>>;
+  id?: string;
+  persistHistory?: boolean;
   promptPrefix?: ReactNode;
   onCommandRun?: (rawCommand: string, parsedCommand?: ParsedCommand) => void;
 }
@@ -35,6 +37,8 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     setOutput,
     scrollToBottom,
     onCommandRun,
+    id,
+    persistHistory,
     ...inputProps
   },
   ref
@@ -51,7 +55,7 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   } = useSuggestions();
   // History
   const { history, setHistory, setSelectedHistoryIndex, navigateHistory } =
-    useHistory(setInputValue);
+    useHistory(setInputValue, id, persistHistory);
   // Input
   const { onInputChange, onInputKeyDown } = useInput({
     ref,
@@ -70,6 +74,8 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     scrollToBottom,
     setOutput,
     onCommandRun,
+    id,
+    persistHistory,
   });
 
   useEffect(() => {

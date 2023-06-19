@@ -1,8 +1,19 @@
 import { useState } from 'react';
 
-const useHistory = (setValue: (value: string) => void) => {
+export const getHistoryLocalStorageKey = (id?: string) =>
+  id ? `coquille-history-${id}` : `coquille-history`;
+
+const useHistory = (
+  setValue: (value: string) => void,
+  id?: string,
+  persistHistory?: boolean
+) => {
   // command history
-  const [history, setHistory] = useState<string[]>([]);
+  const [history, setHistory] = useState<string[]>(
+    persistHistory
+      ? JSON.parse(localStorage.getItem(getHistoryLocalStorageKey(id)) || '[]')
+      : []
+  );
   const [selectedHistoryIndex, setSelectedHistoryIndex] = useState<
     number | null
   >(null);
